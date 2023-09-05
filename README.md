@@ -91,4 +91,4 @@ We welcome pull requests! For significant changes, please open an issue for disc
 
 ## 📜 License
 
-This project is licensed under the MIT License. For details, please refer to the [LICENSE.md](LICENSE.md) file.
+This project is licensed under the GNU General Public License v3.0 (GPL-3.0). For details, please refer to the [LICENSE.md](LICENSE.md) file.
