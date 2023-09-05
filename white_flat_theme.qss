@@ -1,0 +1,119 @@
+QToolBar,
+QAction,
+QPushButton,
+QLineEdit,
+QProgressBar,
+QListWidget,
+QTextEdit,
+QComboBox,
+QTimeEdit {
+border: 1px solid #ddd;
+border-radius: 5px;
+padding: 5px;
+}
+
+QMainWindow {
+background-color: #fff;
+}
+
+QToolBar {
+border: none;
+spacing: 5px;
+}
+
+QToolBar QAction {
+border-color: #fff;
+padding: 5px;
+}
+
+QToolBar QAction:hover {
+background-color: #eee;
+}
+
+QToolBar QAction:pressed {
+background-color: #ddd;
+}
+
+QLabel {
+font-size: 16px;
+font-weight: bold;
+}
+
+QPushButton {
+font-size: 12px;
+font-weight: bold;
+padding: 5px 10px;
+}
+
+QPushButton:hover {
+background-color: #eee;
+}
+
+QPushButton:pressed {
+background-color: #fff;
+}
+
+QLineEdit:focus,
+QTextEdit:focus {
+border-color: #aaa;
+}
+
+QProgressBar {
+text-align: center;
+}
+
+QProgressBar::chunk {
+background-color: red;
+}
+
+QListWidget::item {
+padding: 5px 10px;
+border-bottom: 1px solid #e5f3ff;
+}
+
+QListWidget::item:selected {
+border-bottom: 1px solid #e5f3ff;
+}
+
+QListWidget::item:hover {
+background-color: #e5f3ff;
+}
+
+QScrollBar:vertical {
+border: none;
+background: #eee;
+width: 8px;
+margin: 0;
+}
+
+QScrollBar::handle:vertical {
+background: #bbb;
+min-height: 20px;
+}
+
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical,
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {
+height: 0px;
+border: none;
+background: none;
+}
+
+QComboBox::drop-down,
+QComboBox::down-arrow:on {
+border: none;
+}
+
+QComboBox QAbstractItemView {
+border: none;
+}
+
+QTimeEdit::up-button,
+QTimeEdit::down-button,
+QComboBox::down-arrow,
+QTimeEdit::up-arrow,
+QTimeEdit::down-arrow {
+width: 0px;
+height: 0px;
+}
