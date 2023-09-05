@@ -1,14 +1,8 @@
 # MaTools
 
-Certainly! Below is a README template that explains how to set up and use your "Management Tools" application, which appears to be a PyQt6-based GUI offering various functionalities. Feel free to customize this further to suit the exact nature of your application.
-
----
-
-# Management Tools
-
 Management Tools is a comprehensive GUI application built with PyQt6 that consolidates various tools for different tasks into one fast and efficient interface.
 
-![Screenshot](screenshot.png)  <!-- Update this path to an actual screenshot of your app -->
+![Screenshot](screenshot.png)
 
 ## Features
 
@@ -24,36 +18,31 @@ Management Tools is a comprehensive GUI application built with PyQt6 that consol
 
 ### Prerequisites
 
-- Python 3.11 (Probably work for lower versions)
-- PyQt6 (GUI)
-- black (Code formatter)
-- img2pdf (Image to PDF converter)
-- exif (EXIF data extractor)
-- pyexifinfo (EXIF data extractor)
-- PyPDF2 (PDF file manipulator)
-- yt-dlp (Media Downloader)
+Before you begin, ensure you have met the following requirements:
 
-```bash
-pip install PyQt6
-```
+- Python 3.10/3.11 (Should also work for lower versions)
+- Additional Python packages are installed (Run `pip install -r requirements.txt`)
 
 ### Installation
 
-1. Clone the repository:
+1. **Clone the Repository**
     ```bash
-    git clone https://github.com/yourusername/yourrepositoryname.git
+    git clone https://github.com/Inc44/MaTools.git
     ```
-2. Navigate to the project directory:
+
+2. **Navigate to the Project Directory**
     ```bash
-    cd yourrepositoryname
+    cd MaTools
     ```
-3. Install required packages:
+
+3. **Install Required Packages**
     ```bash
-    pip install -r requirements.txt  # If you have a requirements file
+    pip install -r requirements.txt
     ```
-4. Run the application:
+
+4. **Run the Application**
     ```bash
-    python main.py  # Update this if your main file is named differently
+    python main_management_tools_app.pyw
     ```
 
 ## How to Use
@@ -75,7 +64,3 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
-
----
-
-This README template should provide a good starting point for your project. Make sure to replace placeholders like `yourusername` and `yourrepositoryname` with the actual GitHub username and repository name.
