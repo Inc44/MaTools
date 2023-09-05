@@ -1,66 +1,87 @@
-# MaTools
+# MaTools: A Comprehensive Management Toolkit
 
-Management Tools is a comprehensive GUI application built with PyQt6 that consolidates various tools for different tasks into one fast and efficient interface.
+MaTools is an all-in-one GUI application, created using PyQt6, that offers a suite of tools for various tasks, all within an efficient, user-friendly interface.
 
-![Screenshot](screenshot.png)
+![MaTools Screenshot](screenshot.png)
 
-## Features
+## 🌟 Features
 
-- File Sync
-- Media Date Organizer
-- PDF Merger
-- Python Code Formatter
-- Sort Lines
-- SVG To PNG Converter
-- And many more!
+- 📂 File Sync
+- 📅 Media Date Organizer
+- 📝 PDF Merger
+- 🐍 Python Code Formatter
+- 🧹 Sort Lines
+- 🎨 SVG to PNG Converter
+- 🛠️ And more!
 
-## Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 
-Before you begin, ensure you have met the following requirements:
+- Python 3.10 or 3.11 (should also be compatible with lower versions)
+- Required Python packages (install with `pip install -r requirements.txt`)
 
-- Python 3.10/3.11 (Should also work for lower versions)
-- Additional Python packages are installed (Run `pip install -r requirements.txt`)
-
-### Installation
+### Installation Steps
 
 1. **Clone the Repository**
     ```bash
     git clone https://github.com/Inc44/MaTools.git
     ```
 
-2. **Navigate to the Project Directory**
+2. **Navigate into Project Directory**
     ```bash
     cd MaTools
     ```
 
-3. **Install Required Packages**
+3. **Install Dependencies**
     ```bash
     pip install -r requirements.txt
     ```
 
-4. **Run the Application**
+4. **Launch the Application**
     ```bash
     python main_management_tools_app.pyw
     ```
 
-## How to Use
+### Required System Binaries
 
-The application opens with a toolbar at the top, which contains icons for all the different tools. Hover over an icon to see a tooltip describing what that tool does. Click an icon to open the corresponding tool.
+Ensure the following binaries are installed and accessible in your system's PATH:
 
-## Customizing Themes
+- `ect.exe` (Version 0.9.4 tested)
+- `exiftool.exe` (Version 12.59 tested)
+- `ffmpeg.exe` (Version 6.0 tested)
+- `yt-dlp.exe` (Version 2023.07.06 tested)
 
-The application supports themes. You can change the theme by modifying the `theme_name` variable in the main file.
+#### Adding Binaries to System Path
 
-```python
-theme_name = "white_flat_theme"  # Change this to another theme name
+1. Download the required binaries.
+2. Place them in a directory included in your system's PATH, e.g., `C:\Windows\`.
+
+Verify their availability by running:
+
+```bash
+ect.exe --version
+exiftool.exe -ver
+ffmpeg.exe -version
+yt-dlp.exe --version
 ```
 
-## Contributing
+## 🛠️ Usage
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Upon launch, the top toolbar displays icons representing different tools. Hover over an icon for a tooltip explaining its function. Click an icon to use that particular tool.
 
-## License
+## 🎨 Customization
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+MaTools supports theme customization. To change the theme, modify the `theme_name` variable in the main Python file:
+
+```python
+theme_name = "white_flat_theme"  # Switch to another theme of your choice
+```
+
+## 🤝 Contributing
+
+We welcome pull requests! For significant changes, please open an issue for discussion before making a pull request.
+
+## 📜 License
+
+This project is licensed under the MIT License. For details, please refer to the [LICENSE.md](LICENSE.md) file.
