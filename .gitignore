@@ -1,6 +1,6 @@
-__pycache__/
-_dev/
-_images/
-_shortcuts/
-_unstable/
-cookies.txt
+management_tools/__pycache__/
+management_tools/_dev/
+management_tools/_images/
+management_tools/_shortcuts/
+management_tools/_unstable/
+management_tools/cookies.txt
