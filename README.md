@@ -43,6 +43,13 @@ MaTools is an all-in-one GUI application, created using PyQt6, that offers a sui
     python main_management_tools_app.pyw
     ```
 
+### Links
+
+- [Efficient Compression Tool GitHub Repository](https://github.com/fhanau/Efficient-Compression-Tool.git)
+- [ExifTool Website](https://exiftool.org/)
+- [FFmpeg Builds](https://www.gyan.dev/ffmpeg/builds/)
+- [yt-dlp GitHub Repository](https://github.com/yt-dlp/yt-dlp.git)
+
 ### Required System Binaries
 
 Ensure the following binaries are installed and accessible in your system's PATH:
