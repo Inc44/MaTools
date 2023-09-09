@@ -5,7 +5,17 @@ from PIL import Image, ImageDraw, ImageFont
 from module_svg_to_png_converter import svg_to_png_converter
 
 PROPORTION = 84
-
+SCRIPT_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
+CONFIG = {
+    "FONT_FILE_PATH": os.path.join(SCRIPT_DIRECTORY, "fonts/NunitoSans_10pt_SemiCondensed-Bold.ttf"),
+    "CITATIONS_FILE_PATH": "G:/My Drive/Files/Else/Notes/Main/Notes/1. Main/2. Citations.md",
+    "IDEAS_FILE_PATH": "G:/My Drive/Files/Else/Notes/Main/Notes/1. Main/3. Ideas.md",
+    "CITATIONS_AMOUNT": 5,
+    "IDEAS_AMOUNT": 0,
+    "EMOJI_DIRECTORY": os.path.join(SCRIPT_DIRECTORY, "emojis"),
+    "EMOJI_PNG_FILE_NAME": "emoji.png",
+    "WALLPAPER_PNG_FILE_NAME": "wallpaper.png",
+}
 
 def load_and_sort_text_from_file(file_path: str) -> list:
     """Load and sort text lines from a file."""
@@ -112,18 +122,6 @@ def select_random_emoji(emoji_dir: str, output_path: str) -> None:
 
 def main() -> None:
     """Main function."""
-
-    CONFIG = {
-        "FONT_FILE_PATH": "C:/management_tools/fonts/NunitoSans_10pt_SemiCondensed-Bold.ttf",
-        "CITATIONS_FILE_PATH": "G:/My Drive/Files/Else/Notes/Main/Notes/1. Main/2. Citations.md",
-        "IDEAS_FILE_PATH": "G:/My Drive/Files/Else/Notes/Main/Notes/1. Main/3. Ideas.md",
-        "CITATIONS_AMOUNT": 5,
-        "IDEAS_AMOUNT": 0,
-        "EMOJI_DIRECTORY": "C:/management_tools/emojis",
-        "EMOJI_PNG_FILE_NAME": "emoji.png",
-        "WALLPAPER_PNG_FILE_NAME": "wallpaper.png",
-    }
-
     temp_dir = (
         os.environ.get("TEMP") or os.environ.get("TMPDIR") or os.environ.get("TMP")
     )
