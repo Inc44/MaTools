@@ -13,7 +13,7 @@ class MediaDateOrganizerPanel(QWidget):
         layout = QVBoxLayout()
 
         self.list_widget = DraggableListWidget(
-            accepted_file_extensions=[".jpg", ".png", ".mov", ".mp4", ".m4a"]
+            accepted_file_extensions=[".jpg", ".png", ".mov", ".mp4", ".m4a", ".heic"]
         )
 
         self.process_button = QPushButton("Organize")
