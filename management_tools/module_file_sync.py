@@ -119,11 +119,15 @@ def find_folder_differences(source_folder_path, destination_folder_path):
     destination_files = []
     for dirpath, _, filenames in os.walk(source_folder_path):
         for file in filenames:
-            source_files.append(os.path.relpath(os.path.join(dirpath, file), source_folder_path))
+            source_files.append(
+                os.path.relpath(os.path.join(dirpath, file), source_folder_path)
+            )
 
     for dirpath, _, filenames in os.walk(destination_folder_path):
         for file in filenames:
-            destination_files.append(os.path.relpath(os.path.join(dirpath, file), destination_folder_path))
+            destination_files.append(
+                os.path.relpath(os.path.join(dirpath, file), destination_folder_path)
+            )
 
     only_in_source = set(source_files) - set(destination_files)
     only_in_destination = set(destination_files) - set(source_files)

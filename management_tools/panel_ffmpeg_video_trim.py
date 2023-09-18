@@ -42,7 +42,15 @@ class FfmpegVideoTrimPanel(QWidget):
         layout.addWidget(self.browse_button)
 
         self.list_widget = DraggableListWidget(
-            accepted_file_extensions=[".mp4", ".avi", ".mov", ".mkv", ".webm", ".opus", ".m4a"]
+            accepted_file_extensions=[
+                ".mp4",
+                ".avi",
+                ".mov",
+                ".mkv",
+                ".webm",
+                ".opus",
+                ".m4a",
+            ]
         )
         layout.addWidget(self.list_widget)
 

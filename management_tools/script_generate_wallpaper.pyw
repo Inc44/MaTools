@@ -7,7 +7,9 @@ from module_svg_to_png_converter import svg_to_png_converter
 PROPORTION = 84
 SCRIPT_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 CONFIG = {
-    "FONT_FILE_PATH": os.path.join(SCRIPT_DIRECTORY, "fonts/NunitoSans_10pt_SemiCondensed-Bold.ttf"),
+    "FONT_FILE_PATH": os.path.join(
+        SCRIPT_DIRECTORY, "fonts/NunitoSans_10pt_SemiCondensed-Bold.ttf"
+    ),
     "CITATIONS_FILE_PATH": "G:/My Drive/Files/Else/Notes/Main/Notes/1. Main/2. Citations.md",
     "IDEAS_FILE_PATH": "G:/My Drive/Files/Else/Notes/Main/Notes/1. Main/3. Ideas.md",
     "CITATIONS_AMOUNT": 5,
@@ -16,6 +18,7 @@ CONFIG = {
     "EMOJI_PNG_FILE_NAME": "emoji.png",
     "WALLPAPER_PNG_FILE_NAME": "wallpaper.png",
 }
+
 
 def load_and_sort_text_from_file(file_path: str) -> list:
     """Load and sort text lines from a file."""

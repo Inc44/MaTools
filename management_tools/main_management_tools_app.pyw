@@ -11,26 +11,38 @@ from PyQt6.QtWidgets import (
 )
 from importlib import import_module
 
+
 def get_script_directory():
     return os.path.dirname(os.path.abspath(__file__))
 
+
 def list_python_files(directory_path):
-    return [f[:-3] for f in os.listdir(directory_path) if f.endswith('.py') and f.startswith('panel_')]
+    return [
+        f[:-3]
+        for f in os.listdir(directory_path)
+        if f.endswith(".py") and f.startswith("panel_")
+    ]
+
 
 def generate_class_name(module_name):
-    return "".join(word.capitalize() for word in module_name.split('_')) + "Panel"
+    return "".join(word.capitalize() for word in module_name.split("_")) + "Panel"
+
 
 def generate_icon_name(module_name):
     return f"icon_{module_name}.png"
 
+
 def generate_tooltip(module_name):
-    return module_name.replace('_', ' ').title()
+    return module_name.replace("_", " ").title()
+
 
 def generate_panel_name(module_name):
     return f"{module_name}"
 
+
 def icon_exists(icon_directory, icon_name):
     return os.path.exists(os.path.join(icon_directory, icon_name))
+
 
 def fetch_actions_from_directory(directory_path):
     panel_files = list_python_files(directory_path)
@@ -98,8 +110,6 @@ class MainWindow(QMainWindow):
         module_path = import_module(f"{module_name}")
         panel_class = getattr(module_path, class_name)
         self.setCentralWidget(panel_class())
-
-
 
     def setup_actions(self):
         directory_path = get_script_directory()
