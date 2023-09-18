@@ -10,7 +10,7 @@ from module_svg_to_png_converter import svg_to_png_converter
 from widget_draggable_list import DraggableListWidget
 
 
-class SVGToPNGConverterPanel(QWidget):
+class SvgToPngConverterPanel(QWidget):
     def __init__(self):
         super().__init__()
         layout = QVBoxLayout(self)

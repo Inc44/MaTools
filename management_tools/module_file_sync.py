@@ -114,19 +114,21 @@ def copy_files_from_source_to_destination(
     return processed_files
 
 
-def identify_missing_files_in_source(
-    source_folder_path: str, destination_folder_path: str
-):
-    """Identify files missing in the source, but present in the destination."""
-    missing_files = []
-    for dirpath, _, filenames in os.walk(destination_folder_path):
-        relative_path = os.path.relpath(dirpath, destination_folder_path)
-        source_subfolder = os.path.join(source_folder_path, relative_path)
+def find_folder_differences(source_folder_path, destination_folder_path):
+    source_files = []
+    destination_files = []
+    for dirpath, _, filenames in os.walk(source_folder_path):
         for file in filenames:
-            source_file_path = os.path.join(source_subfolder, file)
-            if not os.path.exists(source_file_path):
-                missing_files.append(os.path.join(dirpath, file))
-    return missing_files
+            source_files.append(os.path.relpath(os.path.join(dirpath, file), source_folder_path))
+
+    for dirpath, _, filenames in os.walk(destination_folder_path):
+        for file in filenames:
+            destination_files.append(os.path.relpath(os.path.join(dirpath, file), destination_folder_path))
+
+    only_in_source = set(source_files) - set(destination_files)
+    only_in_destination = set(destination_files) - set(source_files)
+
+    return only_in_source, only_in_destination
 
 
 def file_sync(
@@ -135,20 +137,23 @@ def file_sync(
     callback=None,
     handle_conflict=None,
 ) -> None:
-    """Synchronize files from the source folder to the destination folder and log the changes."""
     if not handle_conflict:
         handle_conflict = handle_conflict_prompt
+
     processed_files = copy_files_from_source_to_destination(
         source_folder_path, destination_folder_path, handle_conflict, callback
     )
-    missing_files = identify_missing_files_in_source(
+
+    only_in_source, only_in_destination = find_folder_differences(
         source_folder_path, destination_folder_path
     )
-    if missing_files:
-        for file in missing_files:
-            destination_file_path = os.path.join(
-                destination_folder_path, os.path.relpath(file, source_folder_path)
-            )
-            log_info(
-                LogCode.MISSING_SOURCE_FILE, destination_file_path=destination_file_path
-            )
+
+    if only_in_source:
+        for rel_file in only_in_source:
+            destination_file_path = os.path.join(destination_folder_path, rel_file)
+            log_info(LogCode.MISSING_DESTINATION_FILE, file_path=destination_file_path)
+
+    if only_in_destination:
+        for rel_file in only_in_destination:
+            source_file_path = os.path.join(source_folder_path, rel_file)
+            log_info(LogCode.MISSING_SOURCE_FILE, file_path=source_file_path)

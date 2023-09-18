@@ -23,7 +23,7 @@ ACCEPTED_FILE_EXTENSIONS = [
 ]
 
 
-class AudioToFLACConverterPanel(QWidget):
+class AudioToFlacConverterPanel(QWidget):
     def __init__(self):
         super().__init__()
         self._initialize_ui_elements()

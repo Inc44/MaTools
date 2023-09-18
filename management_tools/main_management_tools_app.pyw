@@ -11,6 +11,40 @@ from PyQt6.QtWidgets import (
 )
 from importlib import import_module
 
+def get_script_directory():
+    return os.path.dirname(os.path.abspath(__file__))
+
+def list_python_files(directory_path):
+    return [f[:-3] for f in os.listdir(directory_path) if f.endswith('.py') and f.startswith('panel_')]
+
+def generate_class_name(module_name):
+    return "".join(word.capitalize() for word in module_name.split('_')) + "Panel"
+
+def generate_icon_name(module_name):
+    return f"icon_{module_name}.png"
+
+def generate_tooltip(module_name):
+    return module_name.replace('_', ' ').title()
+
+def generate_panel_name(module_name):
+    return f"{module_name}"
+
+def icon_exists(icon_directory, icon_name):
+    return os.path.exists(os.path.join(icon_directory, icon_name))
+
+def fetch_actions_from_directory(directory_path):
+    panel_files = list_python_files(directory_path)
+    actions = []
+
+    for panel_name in panel_files:
+        element_name = panel_name.replace("panel_", "")
+        class_name = generate_class_name(element_name)
+        icon_name = generate_icon_name(element_name)
+        tooltip = generate_tooltip(element_name)
+        actions.append((tooltip, icon_name, panel_name, class_name))
+
+    return actions
+
 
 def get_base_path() -> str:
     """
@@ -65,114 +99,11 @@ class MainWindow(QMainWindow):
         panel_class = getattr(module_path, class_name)
         self.setCentralWidget(panel_class())
 
+
+
     def setup_actions(self):
-        actions = [
-            ("File Sync", "icon_file_sync.png", "panel_file_sync", "FileSyncPanel"),
-            (
-                "Media Date Organizer",
-                "icon_media_date_organizer.png",
-                "panel_media_date_organizer",
-                "MediaDateOrganizerPanel",
-            ),
-            ("PDF Merger", "icon_pdf_merger.png", "panel_pdf_merger", "PDFMergerPanel"),
-            (
-                "Python Code Formatter",
-                "icon_python_code_formatter.png",
-                "panel_python_code_formatter",
-                "PythonCodeFormatterPanel",
-            ),
-            ("Sort Lines", "icon_sort_lines.png", "panel_sort_lines", "SortLinesPanel"),
-            (
-                "SVG To PNG Converter",
-                "icon_svg_to_png_converter.png",
-                "panel_svg_to_png_converter",
-                "SVGToPNGConverterPanel",
-            ),
-            (
-                "PNG To PDF Converter",
-                "icon_png_to_pdf_converter.png",
-                "panel_png_to_pdf_converter",
-                "PNGToPDFPanel",
-            ),
-            (
-                "Generate Properties Database",
-                "icon_generate_properties_database.png",
-                "panel_generate_properties_database_compare",
-                "GeneratePropertiesDatabasePanel",
-            ),
-            (
-                "Telegram Media Date Organizer",
-                "icon_telegram_media_date_organizer.png",
-                "panel_telegram_media_date_organizer",
-                "TelegramMediaDateOrganizerPanel",
-            ),
-            (
-                "Youtube Audio Downloader",
-                "icon_youtube_audio_downloader.png",
-                "panel_youtube_audio_downloader",
-                "YoutubeAudioDownloaderPanel",
-            ),
-            (
-                "FFMPEG Video Trim",
-                "icon_ffmpeg_video_trim.png",
-                "panel_ffmpeg_video_trim",
-                "FFMPEGVideoTrimPanel",
-            ),
-            (
-                "Image Whitener",
-                "icon_image_whitener.png",
-                "panel_image_whitener",
-                "ImageWhitenerPanel",
-            ),
-            (
-                "Silence Remover",
-                "icon_silence_remover.png",
-                "panel_silence_remover",
-                "SilenceRemoverPanel",
-            ),
-            (
-                "Audio To FLAC Converter",
-                "icon_audio_to_flac_converter.png",
-                "panel_audio_to_flac_converter",
-                "AudioToFLACConverterPanel",
-            ),
-            (
-                "List Subtractor",
-                "icon_list_subtractor.png",
-                "panel_list_subtractor",
-                "ListSubtractorPanel",
-            ),
-            (
-                "Folder Compare",
-                "icon_folder_compare.png",
-                "panel_folder_compare",
-                "FolderComparePanel",
-            ),
-            (
-                "FFMPEG Merger",
-                "icon_ffmpeg_merger.png",
-                "panel_ffmpeg_merger",
-                "FFMPEGMergerPanel",
-            ),
-            (
-                "Audio Duplicate Remover",
-                "icon_audio_duplicate_remover.png",
-                "panel_audio_duplicate_remover",
-                "AudioDuplicateRemoverPanel",
-            ),
-            (
-                "Media Distributor Panel",
-                "icon_media_distributor.png",
-                "panel_media_distributor",
-                "MediaDistributorPanel",
-            ),
-            #(
-                #"SVG To Flashcards Panel",
-                #"icon_svg_to_flashcards.png",
-                #"panel_svg_to_flashcards",
-                #"SVGToFlashcardsPanel",
-            #),
-        ]
+        directory_path = get_script_directory()
+        actions = fetch_actions_from_directory(directory_path)
 
         for tooltip, icon_name, module_name, class_name in actions:
             action = QAction(QIcon(get_icon_path(icon_name)), "", self)

@@ -7,7 +7,7 @@ from PyQt6.QtWidgets import (
     QFileDialog,
 )
 
-from module_generate_properties_database_compare import generate_database
+from module_generate_properties_database import generate_database
 
 
 class GeneratePropertiesDatabasePanel(QWidget):

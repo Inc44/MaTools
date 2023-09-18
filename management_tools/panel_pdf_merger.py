@@ -7,7 +7,7 @@ from module_pdf_merger import pdf_merger
 from widget_draggable_list import DraggableListWidget
 
 
-class PDFMergerPanel(QWidget):
+class PdfMergerPanel(QWidget):
     def __init__(self):
         super().__init__()
         layout = QVBoxLayout()

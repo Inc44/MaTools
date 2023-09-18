@@ -10,7 +10,7 @@ from widget_draggable_list import DraggableListWidget
 from module_ffmpeg_merger import merge_files, get_file_codec
 
 
-class FFMPEGMergerPanel(QWidget):
+class FfmpegMergerPanel(QWidget):
     def __init__(self):
         super().__init__()
 

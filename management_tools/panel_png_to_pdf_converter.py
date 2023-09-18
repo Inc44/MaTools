@@ -7,7 +7,7 @@ from module_png_to_pdf_converter import png_to_pdf_converter
 from widget_draggable_list import DraggableListWidget
 
 
-class PNGToPDFPanel(QWidget):
+class PngToPpfPanel(QWidget):
     def __init__(self):
         super().__init__()
         layout = QVBoxLayout()

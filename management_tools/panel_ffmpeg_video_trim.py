@@ -15,7 +15,7 @@ from module_common_utility import get_desktop_path
 from module_ffmpeg_video_trim import trim_video
 
 
-class FFMPEGVideoTrimPanel(QWidget):
+class FfmpegVideoTrimPanel(QWidget):
     def __init__(self):
         super().__init__()
 

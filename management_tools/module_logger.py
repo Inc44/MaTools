@@ -32,6 +32,7 @@ class LogCode:
     JSON_LOAD_DATA_FAILED = "JSON_LOAD_DATA_FAILED"
     JSON_SUCCESS = "JSON_SUCCESS"
     MISSING_SOURCE_FILE = "MISSING_SOURCE_FILE"
+    MISSING_DESTINATION_FILE = "MISSING_DESTINATION_FILE"
     NO_FILE_PATH_PROVIDED = "NO_FILE_PATH_PROVIDED"
     PNG_ECT = "PNG_ECT"
     PROCESSING_ERROR = "PROCESSING_ERROR"
@@ -65,7 +66,8 @@ LOG_MESSAGES = {
     LogCode.JSON_LOAD_DATA_EMPTY: "{file_path}",
     LogCode.JSON_LOAD_DATA_FAILED: "{file_path}: {error}",
     LogCode.JSON_SUCCESS: "{file_path}",
-    LogCode.MISSING_SOURCE_FILE: "{destination_file_path}",
+    LogCode.MISSING_SOURCE_FILE: "{file_path}",
+    LogCode.MISSING_DESTINATION_FILE: "{file_path}",
     LogCode.NO_FILE_PATH_PROVIDED: "",
     LogCode.PNG_ECT: "{striped_output} for {file_path}",
     LogCode.PROCESSING_ERROR: "{file_type}, {file_path}: {error}",

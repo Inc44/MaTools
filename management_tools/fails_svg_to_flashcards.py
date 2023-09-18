@@ -7,7 +7,7 @@ from module_svg_to_flashcards import process_svg
 from widget_draggable_list import DraggableListWidget
 
 
-class SVGToFlashcardsPanel(QWidget):
+class SvgToFlashcardsPanel(QWidget):
     def __init__(self):
         super().__init__()
         layout = QVBoxLayout()
