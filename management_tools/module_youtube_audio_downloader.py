@@ -48,7 +48,7 @@ class YoutubeAudioDownloader:
         ydl_opts = {
             "quiet": True,
             "skip_download": True,
-            "outtmpl": "%(id)s\x1b%(title)s\x1b%(upload_date)s\x1b%(artist)s\x1b%(album)s\x1b%(track)s\x1b%(release_year)s",
+            "outtmpl": "%(id)s\t%(title)s\t%(upload_date)s\t%(artist)s\t%(album)s\t%(track)s\t%(release_year)s",
         }
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
@@ -64,7 +64,7 @@ class YoutubeAudioDownloader:
 
     def _read_database(self):
         with open(f"{self.output_path}/main.database", "r", encoding="utf-8") as f:
-            for row in map(lambda x: x.split("\x1b"), map(str.strip, f)):
+            for row in map(lambda x: x.split("\t"), map(str.strip, f)):
                 yield self.Media(*row)
 
     def _find_extension(self, file_path, extensions, media_type):
@@ -126,7 +126,8 @@ class YoutubeAudioDownloader:
                 "--mt-file",
                 "-keep",
                 f"{self.output_path}/Temp/{media.yid}/Cover/cover.png",
-            ]
+            ],
+            shell=True
         )
         exta = self._find_audio_extension(media.yid)
 

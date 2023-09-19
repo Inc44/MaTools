@@ -7,22 +7,9 @@ from PyQt6.QtWidgets import (
     QLineEdit,
     QFileDialog,
 )
-from PyQt6.QtCore import QThreadPool, QRunnable
 from module_youtube_audio_downloader import YoutubeAudioDownloader
 
 DEFAULT_OUTPUT_PATH = Path.home() / "Desktop"
-
-
-class DownloaderRunnable(QRunnable):
-    def __init__(self, yid, output_path):
-        super().__init__()
-        self.yid = yid
-        self.output_path = output_path
-
-    def run(self):
-        downloader = YoutubeAudioDownloader(self.yid, self.output_path)
-        downloader.run()
-
 
 class YoutubeAudioDownloaderPanel(QWidget):
     def __init__(self):
@@ -63,5 +50,5 @@ class YoutubeAudioDownloaderPanel(QWidget):
         if not output_path:
             output_path = DEFAULT_OUTPUT_PATH
 
-        downloader_task = DownloaderRunnable(yid, output_path)
-        QThreadPool.globalInstance().start(downloader_task)
+        downloader = YoutubeAudioDownloader(yid, output_path)
+        downloader.run()
