@@ -127,7 +127,7 @@ class YoutubeAudioDownloader:
                 "-keep",
                 f"{self.output_path}/Temp/{media.yid}/Cover/cover.png",
             ],
-            shell=True
+            shell=True,
         )
         exta = self._find_audio_extension(media.yid)
 

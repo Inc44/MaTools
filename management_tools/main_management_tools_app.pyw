@@ -3,130 +3,133 @@ import sys
 from functools import partial
 from PyQt6.QtCore import Qt, QSize
 from PyQt6.QtGui import QAction, QIcon
-from PyQt6.QtWidgets import (
-    QApplication,
-    QLabel,
-    QMainWindow,
-    QToolBar,
-)
+from PyQt6.QtWidgets import QApplication, QLabel, QMainWindow, QToolBar
 from importlib import import_module
 
 
-def get_script_directory():
+def get_script_directory() -> str:
     return os.path.dirname(os.path.abspath(__file__))
 
 
-def list_python_files(directory_path):
+def list_python_files(directory_path: str) -> list[str]:
     return [
-        f[:-3]
-        for f in os.listdir(directory_path)
-        if f.endswith(".py") and f.startswith("panel_")
+        file_name[:-3]
+        for file_name in os.listdir(directory_path)
+        if file_name.endswith(".py") and file_name.startswith("panel_")
     ]
 
 
-def generate_class_name(module_name):
+def generate_class_name(module_name: str) -> str:
     return "".join(word.capitalize() for word in module_name.split("_")) + "Panel"
 
 
-def generate_icon_name(module_name):
+def generate_icon_name(module_name: str) -> str:
     return f"icon_{module_name}.png"
 
 
-def generate_tooltip(module_name):
+def generate_tooltip(module_name: str) -> str:
     return module_name.replace("_", " ").title()
 
 
-def generate_panel_name(module_name):
-    return f"{module_name}"
-
-
-def icon_exists(icon_directory, icon_name):
+def icon_exists(icon_directory: str, icon_name: str) -> bool:
     return os.path.exists(os.path.join(icon_directory, icon_name))
 
 
-def fetch_actions_from_directory(directory_path):
+def fetch_actions_from_directory(directory_path: str) -> list[tuple]:
     panel_files = list_python_files(directory_path)
     actions = []
 
     for panel_name in panel_files:
         element_name = panel_name.replace("panel_", "")
-        class_name = generate_class_name(element_name)
-        icon_name = generate_icon_name(element_name)
-        tooltip = generate_tooltip(element_name)
-        actions.append((tooltip, icon_name, panel_name, class_name))
+        actions.append(
+            (
+                generate_tooltip(element_name),
+                generate_icon_name(element_name),
+                panel_name,
+                generate_class_name(element_name),
+            )
+        )
 
     return actions
 
 
 def get_base_path() -> str:
-    """
-    Return the base path for the application.
-    If the application is bundled using PyInstaller, return the path of the app.
-    Otherwise, return the directory of this script.
-    """
     if getattr(sys, "frozen", False):
         return sys._MEIPASS
-    return os.path.dirname(os.path.abspath(__file__))
+    return get_script_directory()
 
 
 def get_icon_path(icon_name: str) -> str:
-    """
-    Return the complete path for the given icon name.
-    """
     return os.path.join(get_base_path(), f"icons/{icon_name}")
 
 
 def load_stylesheet(theme_name: str) -> str:
-    """
-    Load the stylesheet from a qss file based on the theme name.
-    """
-    base_path = get_base_path()
-    with open(os.path.join(base_path, f"{theme_name}.qss"), "r") as file:
+    with open(os.path.join(get_base_path(), f"{theme_name}.qss"), "r") as file:
         return file.read()
 
 
 class MainWindow(QMainWindow):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
-        self.setWindowTitle("Management Tools")
+        self.initialize_ui()
 
+    def initialize_ui(self) -> None:
+        self.setWindowTitle("Management Tools")
+        self.setup_toolbar()
+        self.setup_default_label()
+        self.setup_actions()
+        self.set_min_window_width_based_on_toolbar()
+
+    def set_min_window_width_based_on_toolbar(self) -> None:
+        toolbar_width = self.toolbar.sizeHint().width()
+        self.setMinimumWidth(toolbar_width)
+
+    def show_content(self, module_name: str, class_name: str) -> None:
+        module_path = import_module(f"{module_name}")
+        panel_class = getattr(module_path, class_name)
+        new_panel = panel_class()
+        self.setCentralWidget(new_panel)
+        recommended_size = new_panel.sizeHint()
+        current_size = self.size()
+        new_width = max(current_size.width(), recommended_size.width())
+        new_height = max(current_size.height(), recommended_size.height())
+        self.resize(new_width, new_height)
+
+    def setup_toolbar(self) -> None:
         self.toolbar = QToolBar("Main Toolbar")
         self.toolbar.setIconSize(QSize(32, 32))
         self.toolbar.setMovable(False)
         self.addToolBar(self.toolbar)
 
+    def setup_default_label(self) -> None:
         self.default_label = QLabel("Welcome back to Management Tools", self)
         self.default_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.default_label.setObjectName("defaultLabel")
         self.setCentralWidget(self.default_label)
 
-        self.setup_actions()
-
-    def show_content(self, module_name: str, class_name: str):
-        """
-        Imports the specified module, instantiates the specified class from that module,
-        and sets it as the central widget.
-        """
+    def show_content(self, module_name: str, class_name: str) -> None:
         module_path = import_module(f"{module_name}")
         panel_class = getattr(module_path, class_name)
         self.setCentralWidget(panel_class())
 
-    def setup_actions(self):
-        directory_path = get_script_directory()
-        actions = fetch_actions_from_directory(directory_path)
-
-        for tooltip, icon_name, module_name, class_name in actions:
+    def setup_actions(self) -> None:
+        for tooltip, icon_name, module_name, class_name in fetch_actions_from_directory(
+            get_script_directory()
+        ):
             action = QAction(QIcon(get_icon_path(icon_name)), "", self)
             action.setToolTip(tooltip)
-            callback = partial(self.show_content, module_name, class_name)
-            action.triggered.connect(callback)
+            action.triggered.connect(
+                partial(self.show_content, module_name, class_name)
+            )
             self.toolbar.addAction(action)
 
 
-if __name__ == "__main__":
+def main() -> None:
     app = QApplication(sys.argv)
-    theme_name = "white_flat_theme"
-    app.setStyleSheet(load_stylesheet(theme_name))
+    app.setStyleSheet(load_stylesheet("white_flat_theme"))
     main_window = MainWindow()
     main_window.show()
     sys.exit(app.exec())
+
+
+if __name__ == "__main__":
+    main()

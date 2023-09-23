@@ -11,6 +11,7 @@ from module_youtube_audio_downloader import YoutubeAudioDownloader
 
 DEFAULT_OUTPUT_PATH = Path.home() / "Desktop"
 
+
 class YoutubeAudioDownloaderPanel(QWidget):
     def __init__(self):
         super().__init__()
