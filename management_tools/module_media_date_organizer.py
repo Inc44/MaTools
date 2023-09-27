@@ -11,7 +11,7 @@ from pathlib import Path
 import datetime
 import exif
 import os
-import pyexifinfo as pex
+import exiftool as pex
 import re
 import subprocess
 import time

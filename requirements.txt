@@ -4,5 +4,5 @@ black==23.7.0
 exif==1.6.0
 img2pdf==0.4.4
 tiktoken==0.5.1
-pyexifinfo==0.4.0
+PyExifTool==0.5.5
 yt-dlp==2023.7.6

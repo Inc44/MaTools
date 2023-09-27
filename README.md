@@ -12,83 +12,123 @@ MaTools is an all-in-one GUI application, created using PyQt6, that offers a sui
 - 🐍 Python Code Formatter
 - 🧹 Sort Lines
 - 🎨 SVG to PNG Converter
-- 🛠️ And more!
+- 🛠️ And much more!
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- Python 3.10 or 3.11 (should also be compatible with lower versions)
-- Required Python packages (install with `pip install -r requirements.txt`)
+- Python 3.10 (Python 3.11 only works for MaTools)
+- Required Python packages:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
 ### Installation Steps
 
-1. **Clone the Repository**
+1. Set up a single Conda environment:
+
+    ```bash
+    conda create --name MaTools python=3.11.5
+    conda activate MaTools
+    ```
+
+1. **Clone the Repository**:
     ```bash
     git clone https://github.com/Inc44/MaTools.git
     ```
 
-2. **Navigate into Project Directory**
+2. **Navigate into Project Directory**:
     ```bash
     cd MaTools
     ```
 
-3. **Install Dependencies**
+3. **Install Dependencies**:
     ```bash
     pip install -r requirements.txt
     ```
 
-4. **Launch the Application**
+4. **Create Conda Enviroments**:
+
+    ```bash
+    conda create --name audio-separator python=3.10.13
+    conda activate audio-separator
+    pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu121
+    pip install audio-separator
+    ```
+
+    ```bash
+    conda create --name whisperx python=3.10.13
+    conda activate whisperx
+    pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu121
+    pip install git+https://github.com/m-bain/whisperx.git
+    ```
+
+    ```bash
+    conda create --name ocrmypdf python=3.10.13
+    conda activate ocrmypdf
+    pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu121
+    pip install ocrmypdf
+    pip install git+https://github.com/ocrmypdf/OCRmyPDF-EasyOCR.git
+    ```
+
+5. **Launch the Application**:
     ```bash
     python main_management_tools_app.pyw
     ```
 
-### Links
+### Important Links
 
-- [Efficient Compression Tool GitHub Repository](https://github.com/fhanau/Efficient-Compression-Tool.git)
-- [ExifTool Website](https://exiftool.org/)
-- [FFmpeg Builds](https://www.gyan.dev/ffmpeg/builds/)
-- [yt-dlp GitHub Repository](https://github.com/yt-dlp/yt-dlp.git)
+- [Anaconda](https://www.anaconda.com/download) - Conda GUI
+- [Miniconda](https://docs.conda.io/projects/miniconda/en/latest) - Conda CLI
+- [Efficient Compression Tool](https://github.com/fhanau/Efficient-Compression-Tool.git) - Photo Compressor
+- [ExifTool](https://exiftool.org/) - Metadata
+- [FFmpeg](https://www.gyan.dev/ffmpeg/builds/) - Media
+- [Tesseract](https://github.com/UB-Mannheim/tesseract/wiki) - OCR processor
+- [Unpaper](https://github.com/rodrigost23/unpaper/releases) - OCR preprocessor
+- [yt-dlp](https://github.com/yt-dlp/yt-dlp.git) - Media downloader
 
-### Required System Binaries
+### System Requirements
 
-Ensure the following binaries are installed and accessible in your system's PATH:
+Ensure these binaries are in your system's PATH:
 
-- `ect.exe` (Version 0.9.4 tested)
-- `exiftool.exe` (Version 12.59 tested)
-- `ffmpeg.exe` (Version 6.0 tested)
-- `yt-dlp.exe` (Version 2023.07.06 tested)
+- `ect.exe` - Version 0.9.4 tested
+- `exiftool.exe` - Version 12.59 tested
+- `ffmpeg.exe` - Version 6.0 tested
+- `unpaper.exe` (and its dlls) - Version 6.1 tested
+- `yt-dlp.exe` - Version 2023.07.06 tested
 
 #### Adding Binaries to System Path
 
-1. Download the required binaries.
-2. Place them in a directory included in your system's PATH, e.g., `C:\Windows\`.
+1. Download the necessary binaries.
+2. Include them in your system's PATH, e.g., `C:\Windows\`.
 
-Verify their availability by running:
+Check their presence:
 
 ```bash
 ect.exe --version
 exiftool.exe -ver
 ffmpeg.exe -version
 yt-dlp.exe --version
+unpaper --version
 ```
 
 ## 🛠️ Usage
 
-Upon launch, the top toolbar displays icons representing different tools. Hover over an icon for a tooltip explaining its function. Click an icon to use that particular tool.
+After launching, the toolbar at the top showcases icons for various tools. Hover over an icon to see its description. Click to activate the respective tool.
 
 ## 🎨 Customization
 
-MaTools supports theme customization. To change the theme, modify the `theme_name` variable in the main Python file:
+MaTools allows theme tweaks. To modify the theme, adjust the `theme_name` variable in the main script:
 
 ```python
-theme_name = "white_flat_theme"  # Switch to another theme of your choice
+theme_name = "white_flat_theme"  # Choose your preferred theme
 ```
 
-## 🤝 Contributing
+## 🤝 Contribution
 
-We welcome pull requests! For significant changes, please open an issue for discussion before making a pull request.
+Contributions are heartily welcomed! If you're considering significant modifications, please initiate an issue for discussions before submitting a pull request.
 
 ## 📜 License
 
-This project is licensed under the GNU General Public License v3.0 (GPL-3.0). For details, please refer to the [LICENSE.md](LICENSE.md) file.
+This software is under the GNU General Public License v3.0 (GPL-3.0). For comprehensive details, refer to [LICENSE.md](LICENSE.md).
