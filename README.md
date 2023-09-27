@@ -6,12 +6,17 @@ MaTools is an all-in-one GUI application, created using PyQt6, that offers a sui
 
 ## 🌟 Features
 
+- 🎵 Audio Speech Recognition
+- 📖 Optical Character Recognition
+- 🎧 YouTube Audio Downloader
+- 📝 PDF Merger
+- 🎨 SVG to PNG Converter
+- 🎬 FFmpeg Video Trim
+- 🐍 Python Code Formatter
 - 📂 File Sync
 - 📅 Media Date Organizer
-- 📝 PDF Merger
-- 🐍 Python Code Formatter
-- 🧹 Sort Lines
-- 🎨 SVG to PNG Converter
+- 🔇 Silence Remover
+- 🖼️ Image Trimmer
 - 🛠️ And much more!
 
 ## 🚀 Getting Started
@@ -79,8 +84,7 @@ MaTools is an all-in-one GUI application, created using PyQt6, that offers a sui
 
 ### Important Links
 
-- [Anaconda](https://www.anaconda.com/download) - Conda GUI
-- [Miniconda](https://docs.conda.io/projects/miniconda/en/latest) - Conda CLI
+- [Anaconda](https://www.anaconda.com/download) - Conda GUI or [Miniconda](https://docs.conda.io/projects/miniconda/en/latest) - Conda CLI
 - [Efficient Compression Tool](https://github.com/fhanau/Efficient-Compression-Tool.git) - Photo Compressor
 - [ExifTool](https://exiftool.org/) - Metadata
 - [FFmpeg](https://www.gyan.dev/ffmpeg/builds/) - Media
