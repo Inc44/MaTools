@@ -65,8 +65,8 @@ def create_wallpaper(
     emoji_path: str,
     wallpaper_path: str,
     font_path: str,
-    image_width: int = 1920,
-    image_height: int = 1080,
+    image_width: int = 3440, #1920 add auto detect resolution method
+    image_height: int = 1440, #1080
     font_size: int = PROPORTION / 2,
     bg_color: str = "black",
     text_color: str = "white",

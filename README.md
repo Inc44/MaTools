@@ -6,7 +6,7 @@ MaTools is an all-in-one GUI application, created using PyQt6, that offers a sui
 
 ## 🌟 Features
 
-- 🎵 Audio Speech Recognition
+- 🎵 Audio Speech Recognition*
 - 📖 Optical Character Recognition
 - 🎧 YouTube Audio Downloader
 - 📝 PDF Merger
@@ -18,6 +18,8 @@ MaTools is an all-in-one GUI application, created using PyQt6, that offers a sui
 - 🔇 Silence Remover
 - 🖼️ Image Trimmer
 - 🛠️ And much more!
+
+* However, I would advise to pre-process the audio in advance using (Ultimate Vocal Remover)[https://github.com/Anjok07/ultimatevocalremovergui]
 
 ## 🚀 Getting Started
 
@@ -54,13 +56,6 @@ MaTools is an all-in-one GUI application, created using PyQt6, that offers a sui
     ```
 
 4. **Create Conda Enviroments**:
-
-    ```bash
-    conda create --name audio-separator python=3.10.13
-    conda activate audio-separator
-    pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu121
-    pip install audio-separator
-    ```
 
     ```bash
     conda create --name whisperx python=3.10.13
