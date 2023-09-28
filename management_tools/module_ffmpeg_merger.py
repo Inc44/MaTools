@@ -1,4 +1,5 @@
 import os
+import re
 import subprocess
 import datetime
 from module_common_utility import get_desktop_path
@@ -38,8 +39,6 @@ def get_file_codec(filepath: str) -> set:
     cmd = [
         "ffmpeg",
         "-hide_banner",
-        "-loglevel",
-        "error",
         "-i",
         filepath,
     ]
@@ -47,10 +46,15 @@ def get_file_codec(filepath: str) -> set:
         cmd, shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE, text=True
     )
     codecs = set()
+
+    audio_video_pattern = re.compile(r"Stream #\d:\d.*: (Audio|Video): (\w+)")
+
     for line in result.stderr.splitlines():
-        if "Stream" in line and ("Audio" in line or "Video" in line):
-            codec_info = line.split(" ", 4)[-1].split(" ")[0].strip()
-            codecs.add(codec_info)
+        match = audio_video_pattern.search(line)
+        if match:
+            _, codec_name = match.groups()
+            codecs.add(codec_name.lower())
+
     return codecs
 
 
