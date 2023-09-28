@@ -19,7 +19,7 @@ MaTools is an all-in-one GUI application, created using PyQt6, that offers a sui
 - 🖼️ Image Trimmer
 - 🛠️ And much more!
 
-* However, I would advise to pre-process the audio in advance using [Ultimate Vocal Remover](https://github.com/Anjok07/ultimatevocalremovergui)
+\* However, I would advise to pre-process the audio in advance using [Ultimate Vocal Remover](https://github.com/Anjok07/ultimatevocalremovergui)
 
 ## 🚀 Getting Started
 
