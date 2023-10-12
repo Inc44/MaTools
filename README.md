@@ -130,4 +130,4 @@ Contributions are heartily welcomed! If you're considering significant modificat
 
 ## 📜 License
 
-This software is under the GNU General Public License v3.0 (GPL-3.0). For comprehensive details, refer to [LICENSE.md](LICENSE.md).
+This software is under the GNU General Public License v3.0 (GPL-3.0). For comprehensive details, refer to [LICENSE](LICENSE).
