@@ -60,14 +60,14 @@ MaTools is an all-in-one GUI application, created using PyQt6, that offers a sui
     ```bash
     conda create --name whisperx python=3.10.13
     conda activate whisperx
-    pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu121
+    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
     pip install git+https://github.com/m-bain/whisperx.git
     ```
 
     ```bash
     conda create --name ocrmypdf python=3.10.13
     conda activate ocrmypdf
-    pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu121
+    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
     pip install ocrmypdf
     pip install git+https://github.com/ocrmypdf/OCRmyPDF-EasyOCR.git
     ```
