@@ -61,6 +61,7 @@ class MediaDistributorPanel(QWidget):
     def _add_path_and_browse_to_layout(self, layout: QVBoxLayout) -> None:
         self.destination_path_label = QLabel("Destination Path:", self)
         self.destination_path_edit = QLineEdit(self)
+        self.destination_path_edit.setText(self.destination_path_dropdown.itemText(0))
         self.browse_button = QPushButton("Browse...", self)
         self.browse_button.clicked.connect(self._browse_destination_path)
         layout.addWidget(self.destination_path_label)
