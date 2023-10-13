@@ -3,58 +3,9 @@ import subprocess
 from typing import List
 from module_common_utility import get_desktop_path
 
-WHISPERX_MODEL = "large-v2"
-WHISPERX_LANGUAGE = "fr"
-WHISPERX_DEVICE = "cuda"
-
-
-def generate_whisperx_command(
-    separated_vocals_path: str, output_directory_path: str
-) -> List[str]:
-    return [
-        "conda",
-        "run",
-        "-n",
-        "whisperx",
-        "whisperx",
-        "--model",
-        WHISPERX_MODEL,
-        "--language",
-        WHISPERX_LANGUAGE,
-        "--device",
-        WHISPERX_DEVICE,
-        separated_vocals_path,
-        "-o",
-        output_directory_path,
-        "--compute_type",
-        "float16",
-        "--threads",
-        "12",
-        "--temperature",
-        "0.0",
-        "-f",
-        "txt",
-        "--batch_size",
-        "1",
-        "--print_progress",
-        "True",
-        "--no_align",
-        "--best_of",
-        "1",
-        "--fp16",
-        "True",
-    ]
-
 
 def run_command(command: List[str]) -> None:
     subprocess.run(command, check=True, shell=True)
-
-
-def process_audio(input_audio_path: str, output_directory_path: str) -> None:
-    whisperx_command = generate_whisperx_command(
-        input_audio_path, output_directory_path
-    )
-    run_command(whisperx_command)
 
 
 def ensure_directory_exists(directory_path: str) -> None:
@@ -62,8 +13,56 @@ def ensure_directory_exists(directory_path: str) -> None:
         os.makedirs(directory_path)
 
 
-def transcribe(input_audio_path: str, output_directory_path: str) -> None:
+def transcribe(
+    input_audio_path: str,
+    output_directory_path: str,
+    model: str = "large-v2",
+    language: str = "fr",
+    device: str = "cuda",
+    compute_type: str = "float16",
+    output_format: str = "txt",
+    threads: str = "12",
+    temperature: str = "0.0",
+    batch_size: str = "1",
+    print_progress: bool = True,
+    no_align: bool = True,
+    best_of: str = "1",
+    fp16: bool = True,
+) -> None:
     if not output_directory_path:
         output_directory_path = get_desktop_path()
     ensure_directory_exists(output_directory_path)
-    process_audio(input_audio_path, output_directory_path)
+    whisperx_command = [
+        "conda",
+        "run",
+        "-n",
+        "whisperx",
+        "whisperx",
+        "--model",
+        model,
+        "--language",
+        language,
+        "--device",
+        device,
+        input_audio_path,
+        "-o",
+        output_directory_path,
+        "--compute_type",
+        compute_type,
+        "--threads",
+        threads,
+        "--temperature",
+        temperature,
+        "-f",
+        output_format,
+        "--batch_size",
+        batch_size,
+        "--print_progress",
+        "True" if print_progress else "False",
+        "--no_align" if no_align else "",
+        "--best_of",
+        best_of,
+        "--fp16",
+        "True" if fp16 else "False",
+    ]
+    run_command(whisperx_command)
