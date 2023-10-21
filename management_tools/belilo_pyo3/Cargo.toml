@@ -1,0 +1,14 @@
+[package]
+name = "belilo_pyo3"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+belilo = "1.0.0"
+pyo3 = { version = "0.20.0", features = ["extension-module"] }
+
+[lib]
+name = "belilo_pyo3_lib"
+crate-type = ["cdylib"]

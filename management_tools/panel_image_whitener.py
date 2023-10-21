@@ -14,17 +14,19 @@ class ImageWhitenerPanel(QWidget):
 
         self.list_widget = DraggableListWidget(accepted_file_extensions=[".png"])
 
-        self.compress_button = QPushButton("Whiten")
-        self.compress_button.clicked.connect(self.image_whitener)
+        self.whiten_button = QPushButton("Whiten")
+        self.whiten_button.clicked.connect(self.whiten_images)
 
         layout.addWidget(self.list_widget)
-        layout.addWidget(self.compress_button)
+        layout.addWidget(self.whiten_button)
+
         self.setLayout(layout)
 
-    def image_whitener(self):
-        png_files_to_process = [
+    def whiten_images(self):
+        image_files_to_whiten = [
             self.list_widget.item(i).text() for i in range(self.list_widget.count())
         ]
-        if png_files_to_process:
-            image_whitener(png_files_to_process)
+
+        if image_files_to_whiten:
+            image_whitener(image_files_to_whiten)
             self.list_widget.clear()
