@@ -14,12 +14,12 @@ class SettingsManager:
 
     def _load_settings(self):
         if os.path.exists(SETTINGS_PATH):
-            with open(SETTINGS_PATH, "r") as file:
+            with open(SETTINGS_PATH, "r", encoding='UTF-8') as file:
                 self._settings = json.load(file)
 
     def _load_constants(self):
         if os.path.exists(CONSTANTS_PATH):
-            with open(CONSTANTS_PATH, "r") as file:
+            with open(CONSTANTS_PATH, "r", encoding='UTF-8') as file:
                 self._constants = json.load(file)
 
     def get_setting(self, key: str, default=None):
@@ -33,5 +33,5 @@ class SettingsManager:
         return self._constants.get(key, default)
 
     def _save_settings(self):
-        with open(SETTINGS_PATH, "w") as file:
+        with open(SETTINGS_PATH, "w", encoding='UTF-8') as file:
             json.dump(self._settings, file)
