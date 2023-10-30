@@ -1,6 +1,7 @@
 import os
 import belilo_pyo3
 
+
 def image_whitener(image_paths_to_trim: list[str], override: bool = True) -> None:
     for image_path_to_trim in image_paths_to_trim:
         if os.path.isfile(image_path_to_trim):

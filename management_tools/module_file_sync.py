@@ -157,10 +157,14 @@ def file_sync(
 ) -> None:
     if not handle_conflict:
         handle_conflict = handle_conflict_prompt
-        
 
     processed_files = copy_files_from_source_to_destination(
-        source_folder_path, destination_folder_path, handle_conflict, callback, auto_yes=auto_yes, detailed_logging=detailed_logging
+        source_folder_path,
+        destination_folder_path,
+        handle_conflict,
+        callback,
+        auto_yes=auto_yes,
+        detailed_logging=detailed_logging,
     )
 
     only_in_source, only_in_destination = find_folder_differences(
