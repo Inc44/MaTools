@@ -127,7 +127,7 @@ class FileSyncPanel(QWidget):
             source_folder,
             destination_folder,
             callback=update_progress,
-            handle_conflict=self.handle_conflict_gui,
+            handle_conflict=self.handle_conflict_gui if not self.auto_yes_checkbox.isChecked() else None,
             auto_yes=self.auto_yes_checkbox.isChecked(),
             detailed_logging=self.detailed_logging_checkbox.isChecked(),
         )
