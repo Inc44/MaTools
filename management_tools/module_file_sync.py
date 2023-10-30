@@ -41,7 +41,12 @@ def handle_conflict_prompt(
 
 
 def copy_files_from_source_to_destination(
-    source_folder_path, destination_folder_path, handle_conflict, callback
+    source_folder_path,
+    destination_folder_path,
+    handle_conflict,
+    callback,
+    auto_yes=False,
+    detailed_logging=False,
 ):
     """Copy files from the source folder to the destination folder."""
     processed_files = 0
@@ -55,11 +60,13 @@ def copy_files_from_source_to_destination(
             destination_file_path = os.path.join(destination_subfolder, file)
             if not os.path.exists(destination_file_path):
                 shutil.copy2(source_file_path, destination_file_path)
-                log_info(
-                    LogCode.FILE_COPIED,
-                    source_file_path=source_file_path,
-                    destination_file_path=destination_file_path,
-                )
+                if detailed_logging:
+                    log_info(
+                        LogCode.FILE_COPIED,
+                        source_file_path=source_file_path,
+                        destination_file_path=destination_file_path,
+                    )
+
             else:
                 source_file_size, source_file_date_modified = get_file_information(
                     source_file_path
@@ -72,8 +79,10 @@ def copy_files_from_source_to_destination(
                     source_file_path, destination_file_path
                 )
                 if same_size and same_date:
-                    """log_info(LogCode.FILE_UNCHANGED,
-                    source_file_path=source_file_path)"""
+                    """
+                    if detailed_logging:
+                        log_info(LogCode.FILE_UNCHANGED,source_file_path=source_file_path)
+                    """
                 elif same_size and not same_date:
                     os.utime(
                         source_file_path,
@@ -82,13 +91,14 @@ def copy_files_from_source_to_destination(
                             os.stat(destination_file_path).st_mtime,
                         ),
                     )
-                    log_info(
-                        LogCode.FILE_DATE_UPDATED,
-                        source_file_path=source_file_path,
-                        destination_file_path=destination_file_path,
-                        source_file_date_modified=source_file_date_modified,
-                        destination_file_date_modified=destination_file_date_modified,
-                    )
+                    if detailed_logging:
+                        log_info(
+                            LogCode.FILE_DATE_UPDATED,
+                            source_file_path=source_file_path,
+                            destination_file_path=destination_file_path,
+                            source_file_date_modified=source_file_date_modified,
+                            destination_file_date_modified=destination_file_date_modified,
+                        )
                 else:
                     user_choice = handle_conflict(
                         file,
@@ -97,17 +107,19 @@ def copy_files_from_source_to_destination(
                         source_file_size,
                         source_file_date_modified,
                     )
-                    if user_choice.lower() == "o":
+                    if user_choice.lower() == "o" or auto_yes:
                         shutil.copy2(source_file_path, destination_file_path)
-                        log_info(
-                            LogCode.FILE_OVERWRITTEN,
-                            source_file_path=source_file_path,
-                            destination_file_path=destination_file_path,
-                        )
+                        if detailed_logging:
+                            log_info(
+                                LogCode.FILE_OVERWRITTEN,
+                                source_file_path=source_file_path,
+                                destination_file_path=destination_file_path,
+                            )
                     else:
-                        log_info(
-                            LogCode.FILE_SKIPPED, source_file_path=source_file_path
-                        )
+                        if detailed_logging:
+                            log_info(
+                                LogCode.FILE_SKIPPED, source_file_path=source_file_path
+                            )
             processed_files += 1
             if callback:
                 callback()
@@ -140,12 +152,15 @@ def file_sync(
     destination_folder_path: str,
     callback=None,
     handle_conflict=None,
+    auto_yes=False,
+    detailed_logging=False,
 ) -> None:
     if not handle_conflict:
         handle_conflict = handle_conflict_prompt
+        
 
     processed_files = copy_files_from_source_to_destination(
-        source_folder_path, destination_folder_path, handle_conflict, callback
+        source_folder_path, destination_folder_path, handle_conflict, callback, auto_yes=auto_yes, detailed_logging=detailed_logging
     )
 
     only_in_source, only_in_destination = find_folder_differences(

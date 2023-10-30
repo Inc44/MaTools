@@ -3,15 +3,17 @@ from PyQt6.QtGui import QColor
 from PyQt6.QtWidgets import (
     QWidget,
     QVBoxLayout,
+    QHBoxLayout,
     QLabel,
     QPushButton,
     QLineEdit,
     QFileDialog,
     QProgressBar,
     QMessageBox,
+    QCheckBox,
 )
 from module_file_sync import file_sync
-
+from settings_manager import SettingsManager
 
 class FileSyncPanel(QWidget):
     def handle_conflict_gui(
@@ -48,29 +50,39 @@ class FileSyncPanel(QWidget):
 
     def __init__(self):
         super().__init__()
-        layout = QVBoxLayout()
+        self.settings_manager: SettingsManager = SettingsManager()
 
         self.source_label = QLabel("Source Folder Path:")
         self.source_path_edit = QLineEdit()
         self.source_browse_button = QPushButton("Browse...")
-        self.source_browse_button.clicked.connect(self.browse_source)
-
         self.destination_label = QLabel("Destination Folder Path:")
         self.destination_path_edit = QLineEdit()
         self.destination_browse_button = QPushButton("Browse...")
-        self.destination_browse_button.clicked.connect(self.browse_destination)
-
-        self.progress_bar = QProgressBar()
-        self.progress_bar.setValue(0)
+        self.auto_yes_checkbox = QCheckBox("Auto Yes")
+        self.detailed_logging_checkbox = QCheckBox("Detailed Logging")
         self.sync_button = QPushButton("Sync")
+        self.progress_bar = QProgressBar()
+
+        self.source_browse_button.clicked.connect(self.browse_source)
+        self.destination_browse_button.clicked.connect(self.browse_destination)
+        self.progress_bar.setValue(0)
         self.sync_button.clicked.connect(self.synchronize)
 
+        source_layout = QHBoxLayout()
+        source_layout.addWidget(self.source_path_edit)
+        source_layout.addWidget(self.source_browse_button)
+
+        destination_layout = QHBoxLayout()
+        destination_layout.addWidget(self.destination_path_edit)
+        destination_layout.addWidget(self.destination_browse_button)
+
+        layout = QVBoxLayout()
         layout.addWidget(self.source_label)
-        layout.addWidget(self.source_path_edit)
-        layout.addWidget(self.source_browse_button)
+        layout.addLayout(source_layout)
         layout.addWidget(self.destination_label)
-        layout.addWidget(self.destination_path_edit)
-        layout.addWidget(self.destination_browse_button)
+        layout.addLayout(destination_layout)
+        layout.addWidget(self.auto_yes_checkbox)
+        layout.addWidget(self.detailed_logging_checkbox)
         layout.addWidget(self.progress_bar)
         layout.addWidget(self.sync_button)
 
@@ -116,4 +128,6 @@ class FileSyncPanel(QWidget):
             destination_folder,
             callback=update_progress,
             handle_conflict=self.handle_conflict_gui,
+            auto_yes=self.auto_yes_checkbox.isChecked(),
+            detailed_logging=self.detailed_logging_checkbox.isChecked(),
         )
