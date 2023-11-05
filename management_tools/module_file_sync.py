@@ -37,7 +37,7 @@ def handle_conflict_prompt(
     Would you like to overwrite the destination file? (Type 'o' to overwrite)
     """
     user_choice = input(prompt_message)
-    return user_choice.lower() == "o"
+    return "o" if user_choice.lower() == "o" else "s"
 
 
 def copy_files_from_source_to_destination(

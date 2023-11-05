@@ -44,10 +44,7 @@ class FileSyncPanel(QWidget):
         )
         msg_box.setDefaultButton(QMessageBox.StandardButton.No)
         result = msg_box.exec()
-        if result == QMessageBox.StandardButton.Yes:
-            return "o"
-        else:
-            return "s"
+        return "o" if result == QMessageBox.StandardButton.Yes else "s"
 
     def __init__(self):
         super().__init__()
