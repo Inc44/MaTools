@@ -10,10 +10,12 @@ QTimeEdit {
 border: 1px solid #ddd;
 border-radius: 5px;
 padding: 5px;
+
 }
 
-QMainWindow {
+* {
 background-color: #fff;
+color: #000;
 }
 
 QToolBar {
