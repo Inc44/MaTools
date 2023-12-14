@@ -35,7 +35,7 @@ class AsrPanel(QWidget):
         self.model_combo.addItems(
             ["tiny", "base", "small", "medium", "large", "large-v2", "large-v3"]
         )
-        self.model_combo.setCurrentText("large-v2")
+        self.model_combo.setCurrentText("large-v3")
 
         self.language_label = QLabel("Language:", self)
         self.language_combo = QComboBox(self)
