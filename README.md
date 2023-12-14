@@ -23,20 +23,12 @@ MaTools is an all-in-one GUI application, created using PyQt6, that offers a sui
 
 ## 🚀 Getting Started
 
-### Prerequisites
-
-- Python 3.10 (Python 3.11 only works for MaTools)
-- Required Python packages:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
 ### Installation Steps
 
-1. Set up a single Conda environment:
+1. Set up a Conda environment:
 
     ```bash
-    conda create --name MaTools python=3.11.5
+    conda create --name MaTools python=3.10.13
     conda activate MaTools
     ```
 
@@ -55,7 +47,7 @@ MaTools is an all-in-one GUI application, created using PyQt6, that offers a sui
     pip install -r requirements.txt
     ```
 
-4. **Create Conda Enviroments**:
+4. **Create Conda Enviroments (Optionally to avoid conflicts)**:
 
     ```bash
     conda create --name whisperx python=3.10.13 -y
@@ -73,8 +65,15 @@ MaTools is an all-in-one GUI application, created using PyQt6, that offers a sui
     ```
 
 5. **Launch the Application**:
+
+   Launch from cmd:
     ```bash
-    python main_management_tools_app.pyw
+    python -O main_management_tools_app.pyw
+    ```
+
+    Linux shortcut:
+    ```bash
+    /home/pc/.conda/envs/MaTools/bin/python -O /MaTools/management_tools/main_management_tools_app.pyw
     ```
 
 ### Important Links
