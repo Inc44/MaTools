@@ -7,7 +7,11 @@ import rusty_scissors_pyo3
 
 
 def generate_file_name() -> str:
-    desktop_path = Path(os.path.join(os.environ["USERPROFILE"], "Desktop"))
+    if os.name == 'nt':
+        desktop_path = Path(os.path.join(os.environ["USERPROFILE"], "Desktop"))
+    else:
+        desktop_path = Path(os.path.expanduser("~/Desktop"))
+
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     return str(desktop_path / f"screentrim_{timestamp}.png")
 
