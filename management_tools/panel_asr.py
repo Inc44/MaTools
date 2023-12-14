@@ -33,7 +33,7 @@ class AsrPanel(QWidget):
         self.model_label = QLabel("Model:", self)
         self.model_combo = QComboBox(self)
         self.model_combo.addItems(
-            ["tiny", "base", "small", "medium", "large", "large-v2"]
+            ["tiny", "base", "small", "medium", "large", "large-v2", "large-v3"]
         )
         self.model_combo.setCurrentText("large-v2")
 

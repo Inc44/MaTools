@@ -16,7 +16,7 @@ def ensure_directory_exists(directory_path: str) -> None:
 def transcribe(
     input_audio_path: str,
     output_directory_path: str,
-    model: str = "large-v2",
+    model: str = "large-v3",
     language: str = "fr",
     device: str = "cuda",
     compute_type: str = "float16",
