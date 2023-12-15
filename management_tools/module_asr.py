@@ -5,7 +5,12 @@ from module_common_utility import get_desktop_path
 
 
 def run_command(command: List[str]) -> None:
-    subprocess.run(command, check=True, shell=True)
+    if os.name == 'nt':
+        shell = True
+    else:
+        shell = False
+        command[0] = "/home/pc/miniconda3/bin/conda"
+    subprocess.run(command, check=True, shell=shell)
 
 
 def ensure_directory_exists(directory_path: str) -> None:
@@ -44,7 +49,7 @@ def transcribe(
         language,
         "--device",
         device,
-        f"\"{input_audio_path}\"",
+        input_audio_path,
         "-o",
         output_directory_path,
         "--compute_type",
@@ -65,6 +70,4 @@ def transcribe(
         "--fp16",
         "True" if fp16 else "False",
     ]
-    whisperx_command = ' '.join(whisperx_command)
-    #print(whisperx_command)
     run_command(whisperx_command)
