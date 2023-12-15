@@ -14,7 +14,7 @@ def get_script_directory() -> str:
 def list_python_files(directory_path: str) -> list[str]:
     return [
         file_name[:-3]
-        for file_name in os.listdir(directory_path)
+        for file_name in sorted(os.listdir(directory_path))
         if file_name.endswith(".py") and file_name.startswith("panel_")
     ]
 
