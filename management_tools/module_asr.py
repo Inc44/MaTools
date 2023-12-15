@@ -44,7 +44,7 @@ def transcribe(
         language,
         "--device",
         device,
-        input_audio_path,
+        f"\"{input_audio_path}\"",
         "-o",
         output_directory_path,
         "--compute_type",
@@ -65,4 +65,6 @@ def transcribe(
         "--fp16",
         "True" if fp16 else "False",
     ]
+    whisperx_command = ' '.join(whisperx_command)
+    #print(whisperx_command)
     run_command(whisperx_command)
