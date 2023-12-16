@@ -1,5 +1,5 @@
 PyPDF2==3.0.1
-PyQt6==6.5.2
+PyQt6==6.6.1
 black==23.7.0
 exif==1.6.0
 img2pdf==0.4.4
