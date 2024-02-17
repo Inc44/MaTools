@@ -12,7 +12,7 @@ class PngToPdfConverterPanel(QWidget):
         super().__init__()
         layout = QVBoxLayout()
 
-        self.list_widget = DraggableListWidget(accepted_file_extensions=[".png"])
+        self.list_widget = DraggableListWidget(accepted_file_extensions=[".png", ".jpg"])
 
         self.convert_button = QPushButton("Convert")
         self.convert_button.clicked.connect(self.convert_pngs_to_pdf)
