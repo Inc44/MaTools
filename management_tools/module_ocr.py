@@ -41,6 +41,8 @@ def generate_ocrmypdf_command(
         "-l",
         formatted_languages,
         "--clean",
+        "--pdf-renderer",
+        "sandwich",
     ]
 
     if is_image_file(input_path):
