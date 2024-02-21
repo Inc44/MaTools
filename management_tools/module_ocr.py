@@ -51,7 +51,12 @@ def generate_ocrmypdf_command(
 
 
 def run_command(command: List[str]) -> None:
-    subprocess.run(command, check=True, shell=True)
+    if os.name == "nt":
+        shell = True
+    else:
+        shell = False
+        command[0] = "/home/pc/miniconda3/bin/conda"
+    subprocess.run(command, check=True, shell=shell)
 
 
 def recognize(

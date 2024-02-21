@@ -35,4 +35,4 @@ def png_to_pdf_converter(png_files: list[str]) -> None:
     """
     pdf_path = Path(get_desktop_path()) / get_unique_filename()
     with open(pdf_path, "wb") as f:
-        f.write(img2pdf.convert(png_files))
+        f.write(img2pdf.convert(png_files, rotation=img2pdf.Rotation.ifvalid))

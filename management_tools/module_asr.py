@@ -5,7 +5,7 @@ from module_common_utility import get_desktop_path
 
 
 def run_command(command: List[str]) -> None:
-    if os.name == 'nt':
+    if os.name == "nt":
         shell = True
     else:
         shell = False

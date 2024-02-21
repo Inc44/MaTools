@@ -7,7 +7,7 @@ import rusty_scissors_pyo3
 
 
 def generate_file_name() -> str:
-    if os.name == 'nt':
+    if os.name == "nt":
         desktop_path = Path(os.path.join(os.environ["USERPROFILE"], "Desktop"))
     else:
         desktop_path = Path(os.path.expanduser("~/Desktop"))
