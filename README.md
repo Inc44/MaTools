@@ -73,7 +73,7 @@ MaTools is an all-in-one GUI application, created using PyQt6, that offers a sui
 
     Linux shortcut:
     ```bash
-    /home/pc/miniconda3/envs/MaTools/bin/python -O /home/pc/MaTools/management_tools/main_management_tools_app.pyw
+    ~/miniconda3/envs/MaTools/bin/python -O ~/MaTools/management_tools/main_management_tools_app.pyw
     ```
 
     Windows shortcut:
