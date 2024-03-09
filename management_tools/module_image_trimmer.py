@@ -1,7 +1,6 @@
 import os
 from datetime import datetime
 from pathlib import Path
-from tempfile import NamedTemporaryFile
 from PIL import ImageGrab
 import rusty_scissors_pyo3
 
@@ -16,19 +15,12 @@ def generate_file_name() -> str:
     return str(desktop_path / f"screentrim_{timestamp}.png")
 
 
-def save_image(trimmed_image_path: str, save_path: str) -> None:
-    os.rename(trimmed_image_path, save_path)
-
-
 def clipboard_image_trimmer(override: bool = True) -> None:
     clipboard_image = ImageGrab.grabclipboard()
     if clipboard_image is not None:
-        with NamedTemporaryFile(delete=False, suffix=".png") as temp_file:
-            clipboard_image.save(temp_file.name, "PNG")
-            temp_file.close()
-            rusty_scissors_pyo3.process_image_py(temp_file.name, override)
-            save_image(temp_file.name, generate_file_name())
-
+        final_file_name = generate_file_name()
+        clipboard_image.save(final_file_name, "PNG")
+        rusty_scissors_pyo3.process_image_py(final_file_name, override)
 
 def path_images_trimmer(image_paths_to_trim: list[str], override: bool = False) -> None:
     for image_path_to_trim in image_paths_to_trim:
