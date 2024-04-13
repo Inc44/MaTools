@@ -5,4 +5,4 @@ exif>=1.6.0
 img2pdf>=0.5.1
 tiktoken>=0.6.0
 PyExifTool>=0.5.6
-yt-dlp>=2023.12.30
+yt-dlp>=2024.4.9
