@@ -39,8 +39,8 @@ class AsrPanel(QWidget):
 
         self.language_label = QLabel("Language:", self)
         self.language_combo = QComboBox(self)
-        self.language_combo.addItems(["en", "fr", "ja", "ru", "uk"])
-        self.language_combo.setCurrentText("fr")
+        self.language_combo.addItems(["English", "French", "German", "Polish", "Russian", "Ukrainian", "Japanese", "Chinese", "Korean"])
+        self.language_combo.setCurrentText("French")
 
         self.device_label = QLabel("Device:", self)
         self.device_combo = QComboBox(self)
