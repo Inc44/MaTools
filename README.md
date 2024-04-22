@@ -68,17 +68,17 @@ MaTools is an all-in-one GUI application, created using PyQt6, that offers a sui
 
    Launch from cmd:
     ```bash
-    python -O main_management_tools_app.pyw
+    python -OO main_management_tools_app.pyw
     ```
 
     Linux shortcut:
     ```bash
-    ~/miniconda3/envs/MaTools/bin/python -O ~/MaTools/management_tools/main_management_tools_app.pyw
+    ~/miniconda3/envs/MaTools/bin/python -OO ~/MaTools/management_tools/main_management_tools_app.pyw
     ```
 
     Windows shortcut:
     ```cmd
-    C:\ProgramData\miniconda3\envs\MaTools\pythonw.exe -O D:\github\MaTools\management_tools\main_management_tools_app.pyw
+    C:\ProgramData\miniconda3\envs\MaTools\pythonw.exe -OO Y:\pc\github\MaTools\management_tools\main_management_tools_app.pyw
     ```
 
 ### Important Links
