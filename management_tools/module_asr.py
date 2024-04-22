@@ -22,7 +22,7 @@ def transcribe(
     input_audio_path: str,
     output_directory_path: str,
     model: str = "large-v3",
-    language: str = "fr",
+    language: str = "French",
     device: str = "cuda",
     compute_type: str = "float16",
     output_format: str = "txt",
