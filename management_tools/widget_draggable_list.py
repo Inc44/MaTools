@@ -9,7 +9,7 @@ class DraggableListWidget(QListWidget):
         self.viewport().setAcceptDrops(True)
         self.setDragDropMode(QListWidget.DragDropMode.InternalMove)
 
-        self.accepted_file_extensions = accepted_file_extensions or []
+        self.accepted_file_extensions = [ext.lower() for ext in (accepted_file_extensions or [])]
 
     def dragEnterEvent(self, event):
         mime_data = event.mimeData()
@@ -26,12 +26,12 @@ class DraggableListWidget(QListWidget):
                         for file in files:
                             full_path = os.path.join(root, file)
                             if any(
-                                full_path.endswith(ext)
+                                full_path.lower().endswith(ext)
                                 for ext in self.accepted_file_extensions
                             ):
                                 self.addItem(full_path)
                 elif any(
-                    file_path.endswith(ext) for ext in self.accepted_file_extensions
+                    file_path.lower().endswith(ext) for ext in self.accepted_file_extensions
                 ):
                     self.addItem(file_path)
             event.acceptProposedAction()
