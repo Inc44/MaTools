@@ -57,7 +57,7 @@ def run_command(command: List[str]) -> None:
         shell = True
     else:
         shell = False
-        command[0] = "~/miniconda3/bin/conda"
+        command[0] = "/home/pc/miniconda3/bin/conda"
     subprocess.run(command, check=True, shell=shell)
 
 
