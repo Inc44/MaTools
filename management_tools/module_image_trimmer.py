@@ -6,29 +6,30 @@ import rusty_scissors_pyo3
 
 
 def generate_file_name() -> str:
-    if os.name == "nt":
-        desktop_path = Path(os.path.join(os.environ["USERPROFILE"], "Desktop"))
-    else:
-        desktop_path = Path(os.path.expanduser("~/Desktop"))
+	if os.name == "nt":
+		desktop_path = Path(os.path.join(os.environ["USERPROFILE"], "Desktop"))
+	else:
+		desktop_path = Path(os.path.expanduser("~/Desktop"))
 
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    return str(desktop_path / f"screentrim_{timestamp}.png")
+	timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+	return str(desktop_path / f"screentrim_{timestamp}.png")
 
 
 def clipboard_image_trimmer(override: bool = True) -> None:
-    clipboard_image = ImageGrab.grabclipboard()
-    if clipboard_image is not None:
-        final_file_name = generate_file_name()
-        clipboard_image.save(final_file_name, "PNG")
-        rusty_scissors_pyo3.process_image_py(final_file_name, override)
+	clipboard_image = ImageGrab.grabclipboard()
+	if clipboard_image is not None:
+		final_file_name = generate_file_name()
+		clipboard_image.save(final_file_name, "PNG")
+		rusty_scissors_pyo3.process_image_py(final_file_name, override)
+
 
 def path_images_trimmer(image_paths_to_trim: list[str], override: bool = False) -> None:
-    for image_path_to_trim in image_paths_to_trim:
-        if os.path.isfile(image_path_to_trim):
-            rusty_scissors_pyo3.process_image_py(image_path_to_trim, override)
-        # elif os.path.isdir(image_paths_to_trim):
-        #    rusty_scissors_pyo3.process_directory_py(image_paths_to_trim, override)
+	for image_path_to_trim in image_paths_to_trim:
+		if os.path.isfile(image_path_to_trim):
+			rusty_scissors_pyo3.process_image_py(image_path_to_trim, override)
+		# elif os.path.isdir(image_paths_to_trim):
+		#    rusty_scissors_pyo3.process_directory_py(image_paths_to_trim, override)
 
 
 if __name__ == "__main__":
-    clipboard_image_trimmer()
+	clipboard_image_trimmer()
