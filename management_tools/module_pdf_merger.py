@@ -1,7 +1,6 @@
 from datetime import datetime
 import os
-from pathlib import Path
-from PyPDF2 import PdfMerger
+from pypdf import PdfWriter
 
 from module_common_utility import get_desktop_path, get_unique_filename
 
@@ -27,7 +26,7 @@ def pdf_merger(pdf_files: list) -> None:
 	Returns:
 	    None
 	"""
-	merger = PdfMerger()
+	merger = PdfWriter()
 
 	for pdf_file in pdf_files:
 		merger.append(pdf_file)

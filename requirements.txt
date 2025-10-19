@@ -1,8 +1,9 @@
-pypdf>=4.2.0
-PyQt6>=6.6.2
-black>=24.4.0
-exif>=1.6.0
-img2pdf>=0.5.1
-tiktoken>=0.6.0
-PyExifTool>=0.5.6
-yt-dlp>=2024.4.9
+black>=25.9
+exif>=1.6
+img2pdf>=0.6
+mutagen>=1.47
+PyExifTool>=0.5
+pypdf>=6.1
+PyQt6>=6.9
+tiktoken>=0.12
+yt-dlp>=2025.10
