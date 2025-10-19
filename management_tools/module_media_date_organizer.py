@@ -42,10 +42,6 @@ class MediaFile:
 
 	def rename_media_file(self):
 		if self.date_time:
-			self.file_path = rename_file(self.date_time, self.file_path)
-
-	def rename_media_file(self):
-		if self.date_time:
 			"""
             renamed_file_pattern = re.compile("^\d{8}_\d{6}\.\w+$")
             renamed_existing_file_pattern = re.compile("^\d{8}_\d{6}_\d{3}\.\w+$")

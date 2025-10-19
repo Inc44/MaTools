@@ -84,17 +84,6 @@ class MainWindow(QMainWindow):
 		toolbar_width = self.toolbar.sizeHint().width()
 		self.setMinimumWidth(toolbar_width)
 
-	def show_content(self, module_name: str, class_name: str) -> None:
-		module_path = import_module(f"{module_name}")
-		panel_class = getattr(module_path, class_name)
-		new_panel = panel_class()
-		self.setCentralWidget(new_panel)
-		recommended_size = new_panel.sizeHint()
-		current_size = self.size()
-		new_width = max(current_size.width(), recommended_size.width())
-		new_height = max(current_size.height(), recommended_size.height())
-		self.resize(new_width, new_height)
-
 	def setup_toolbar(self) -> None:
 		self.toolbar = QToolBar("Main Toolbar")
 		self.toolbar.setIconSize(QSize(32, 32))

@@ -29,6 +29,7 @@ class AsrPanel(QWidget):
 		self.output_path_label = QLabel("Output Path:", self)
 		self.output_path_edit = QLineEdit(self)
 		self.browse_button = QPushButton("Browse...", self)
+		self.browse_button.clicked.connect(self.browse_output_path)
 
 		self.model_label = QLabel("Model:", self)
 		self.model_combo = QComboBox(self)

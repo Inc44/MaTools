@@ -10,7 +10,7 @@ def get_unique_filename(prefix: str, extension: str, directory: str = ".") -> st
 	"""Generates a unique filename with the given prefix and extension in the specified directory."""
 	counter = 1
 	while True:
-		filename = f"{prefix}_{counter}{extension}"
+		filename = f"{prefix}_{str(counter).zfill(3)}{extension}"
 		if not os.path.exists(os.path.join(directory, filename)):
 			return filename
 		counter += 1
