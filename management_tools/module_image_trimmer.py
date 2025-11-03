@@ -1,4 +1,5 @@
 import os
+import shutil
 from datetime import datetime
 from pathlib import Path
 from PIL import ImageGrab
@@ -16,11 +17,18 @@ def generate_file_name() -> str:
 
 
 def clipboard_image_trimmer(override: bool = True) -> None:
-	clipboard_image = ImageGrab.grabclipboard()
-	if clipboard_image is not None:
-		final_file_name = generate_file_name()
-		clipboard_image.save(final_file_name, "PNG")
-		rusty_scissors_pyo3.process_image_py(final_file_name, override)
+	clipboard_data = ImageGrab.grabclipboard()
+	if clipboard_data is None:
+		return
+	if isinstance(clipboard_data, list):
+		for path in clipboard_data:
+			final_file_name = generate_file_name()
+			shutil.copy2(path, final_file_name)
+			rusty_scissors_pyo3.process_image_py(final_file_name, override)
+		return
+	final_file_name = generate_file_name()
+	clipboard_data.save(final_file_name, "PNG")
+	rusty_scissors_pyo3.process_image_py(final_file_name, override)
 
 
 def path_images_trimmer(image_paths_to_trim: list[str], override: bool = False) -> None:
