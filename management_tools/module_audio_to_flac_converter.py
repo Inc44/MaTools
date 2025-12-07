@@ -34,6 +34,8 @@ def convert_audio_to_flac(audio_path: str, output_directory: str = None) -> str:
 		"flac",
 		"-compression_level",
 		"12",
+		"-c:v",
+		"copy",
 		"-y",
 		output_file_path,
 	]
